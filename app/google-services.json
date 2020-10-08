@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "888690804151",
+    "firebase_url": "https://auth-demo-df69d.firebaseio.com",
+    "project_id": "auth-demo-df69d",
+    "storage_bucket": "auth-demo-df69d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888690804151:android:22249aa31be5701652d432",
+        "android_client_info": {
+          "package_name": "com.example.googleauthdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888690804151-v866fh0csq7pt3hlvd60uq5q6kjt0e18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqQ9AMRp7RJMy0Z6xFrYIscVhIRXJNHOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888690804151-v866fh0csq7pt3hlvd60uq5q6kjt0e18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
