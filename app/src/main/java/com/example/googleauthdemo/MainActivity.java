@@ -38,22 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     private GoogleSignInClient mGoogleSignInClient;
-    private final static int RC_SIGN_IN = 123;
+    private static int RC_SIGN_IN;
     private FirebaseAuth mAuth;
 
-
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
-
-        FirebaseUser user = mAuth.getCurrentUser();
-        if(user!=null){
-            Intent intent = new Intent(getApplicationContext(),Profile.class);
-            startActivity(intent);
-        }
-
-
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
     }
+
 
 
     @Override
@@ -61,13 +56,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // [START config_signin]
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        // [START initialize_auth]
+        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-
-
-        createRequest();
-
-
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,21 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void createRequest() {
 
-
-        // Configure Google Sign In
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
-    }
 
 
     private void signIn() {
@@ -147,6 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    public void updateUI(FirebaseUser currentUser){
+        if (currentUser != null){
+            Intent intent = new Intent(getApplicationContext(),Profile.class);
+            startActivity(intent);
+        }
+
     }
 
 
